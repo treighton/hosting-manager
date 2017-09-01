@@ -2,24 +2,28 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slugs');
 
-const vendorSchema = new mongoose.Schema({
+const clientSchema = mongoose.Schema({
     slug: String,
     name: {
         type: String,
         trim: true,
-        required: 'You must supply a Vendor Title'
+        required: 'Please enter a Name for this client'
     },
-    monthlyCosts: {
-        type:Number,
-        default: 0
+    contactName:{
+        type: String,
+        trim:true
     },
-    link: {
+    phone: {
+        type: String,
+        trim: true
+    },
+    email: {
         type: String,
         trim: true
     }
 });
 
-vendorSchema.pre('save', async function (next) {
+clientSchema.pre('save', async function (next) {
     if(!this.isModified('name')) {
         next();
         return;
@@ -38,4 +42,4 @@ vendorSchema.pre('save', async function (next) {
     // TODO make so slugs must be unique
 });
 
-module.exports = mongoose.model('Vendor', vendorSchema);
+module.exports = mongoose.model('Client',clientSchema);

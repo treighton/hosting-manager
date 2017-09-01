@@ -1,0 +1,9 @@
+mixin vendorForm(vendor = {})
+    form(action=`/vendor/add/${vendor._id || ''}` method="post" class="card")
+        label(for="name") Name
+        input(type="text" name="name" value=vendor.name)
+        label(for="monthlyCosts") Monthly Cost
+        input(type="number" name="monthlyCosts" value=vendor.monthlyCosts)
+        label(for="link") Link to Vendor Site
+        input(type="text" name="link" value=vendor.link)
+        input(type="submit" value="Save 🍔" class="button")

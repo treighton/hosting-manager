@@ -1,0 +1,22 @@
+mixin siteCard(site = {})
+    .site
+        .site__hero
+            .site__actions
+                .site__action.site__action--edit
+                    a(href=`/site/${site._id}/edit`)
+                        != h.icon('pencil')
+            h2.title
+                a(href=`/site/${site._id}`) #{site.name}
+        .site__details
+            ul
+                li
+                    a(href=`http://${site.url}`)= site.url
+                li
+                    em
+                        a(href=`http://${site.staging}`)= site.staging
+                li
+                    p Client:
+                    a(href=`/client/${site.client.slug || ' '}`)= site.client.name
+                li
+                    p Vendor:
+                    a(href=`/vendor/${site.hostingVendor.slug || ' '}`) #{site.hostingVendor.name}

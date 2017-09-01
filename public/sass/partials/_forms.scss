@@ -1,0 +1,57 @@
+input, textarea {
+  width:100%;
+  padding:10px;
+  border: 1px solid $grey;
+  &.input {
+    &--error {
+      border-color: red;
+    }
+  }
+}
+
+label {
+  padding: 10px 0;
+  display: block;
+}
+select {
+  width: 100%;
+  height: 52%;
+  background-color: #ffffff;
+  border-radius: 0px !important;
+}
+.form {
+  background: white;
+  padding: 2rem;
+  box-shadow: $grad;
+  & + .form {
+    margin-top: 4rem;
+  }
+  // I know this isn't bem but meh
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid $grey;
+  }
+  input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  }
+}
+
+.inline-form{
+  display: flex;
+  margin: 10px 0;
+  > * {
+    flex: 1;
+  }
+  select {
+    width: 100%;
+    height: 52%;
+    background-color: #ffffff;
+    border-radius: 0px !important;
+  }
+}

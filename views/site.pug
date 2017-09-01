@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    //!= h.dump(site)
+    .single__hero
+        h1= site.name
+    .single__details.inner
+
+        .card
+            .site__actions
+                .site__action.site__action--edit
+                    a(href=`/site/${site._id}/edit`)
+                        != h.icon('pencil')
+            h2.title
+                a(href=`${site.url}`)= site.url
+            span
+                a(href=`${site.staging}`)= site.staging
+            ul
+                li
+                    p Client:
+                    a(href=`/client/${site.client.slug || ' '}`)= site.client.name
+                li
+                    p Vendor:
+                    a(href=`/vendor/${site.hostingVendor.slug || ' '}`) #{site.hostingVendor.name}
+                li
+                    if site.domainManager
+                        a(href=`/client/page`) Page Design Group Manages the domain
+                    else
+                        a(href=`/client/${site.client.slug || ' '}`) #{site.client.name} Manages the domain
+                li
+                    p #{site.registrar} is where the domain is registered
+                li
+                    p The name server for this domain is #{site.nameServer}
+                if site.ssl
+                    li
+                        p the SSL is for this site is from #{site.ssl}
+                li
+                    p Hosting for this site will need to be renewed on #{site.renewal}
+            p.title Billable items
+            table.table
+                thead
+                    th Description
+                    th Price
+                    th Period
+                each bill in site.billableItems
+                        tr
+                            td= bill.description
+                            td= bill.rate
+                            td= bill.period

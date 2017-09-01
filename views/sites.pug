@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_siteCard
+
+
+block content
+    .inner
+        h1= title
+        .sites
+            each site in sites
+                +siteCard(site)

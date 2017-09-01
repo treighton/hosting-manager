@@ -1,0 +1,116 @@
+mixin siteForm(site = {}, clients ={}, vendors = {})
+    form(action=`/site/add/${site._id || ''}` method="post" class="card")
+        label(for="name") Name
+        input(type="text" name="name" value=site.name required)
+        label(for="url") Live Site URL
+        input(type="text" name="url" value=site.staging)
+        label(for="staging") Staging Site URL
+        input(type="text" name="staging" value=site.staging)
+        label(for="client") Client
+        select(type="select" name="client" required)
+            for client in clients
+                if site.client
+                    option(value=client._id selected=(client._id === site.client._id ? 'selected' : false))= client.name
+                else
+                    option(value=client._id)= client.name
+
+        label(for="hostingVendor") Host
+        select(type="select" name="hostingVendor")
+            for vendor in vendors
+                if site.hostingVendor
+                    option(value=vendor._id selected=(vendor._id === site.hostingVendor._id ? 'selected' : false))= vendor.name
+                else
+                    option(value=vendor._id)= vendor.name
+        p
+            b Who Manages the domain?
+        label(for="domainManager") pdg
+        input(type="radio" name="domainManager" value=1 checked=site.domainManager===true)
+        label(for="domainManager") Client
+        input(type="radio" name="domainManager" value=0 checked=site.domainManager===false)
+        label(for="registrar") Where is the domain registered?
+        input(type="text" name="registrar" value=site.registrar)
+        label(for="nameServer") Where is the NS?
+        input(type="text" name="nameServer" value=site.nameServer)
+        label(for="sslProvider") Where is the SSL from?
+        input(type="text" name="sslProvider" valuel=site.sslProvider)
+        b Billable Items
+        if site.billableItems
+            .inline-form
+                .form-group
+                    label(for="billableItems[0][description]") Description
+                    input(name="billableItems[0][description]" type="text" value=site.billableItems['0']['description'])
+                .form-group
+                    label(for="billableItems[0][rate]") Rate
+                    input(name="billableItems[0][rate]" type="number" value=site.billableItems['0']['rate'])
+                .form-group
+                    label(for="billableItems[0][period]") Period
+                    select(name="billableItems[0][period]" type="select")
+                        option(value="yearly" selected=(site.billableItems['0']['period'] === 'yearly' ? 'selected' : false)) Yearly
+                        option(value="monthly" selected=(site.billableItems['0']['period'] === 'monthly' ? 'selected' : false)) Monthly
+            .inline-form
+                .form-group
+                    label(for="billableItems[1][description]") Description
+                    input(name="billableItems[1][description]" type="text" value=site.billableItems['1']['description'])
+                .form-group
+                    label(for="billableItems[1][rate]") Rate
+                    input(name="billableItems[1][rate]" type="number" value=site.billableItems['1']['rate'])
+                .form-group
+                    label(for="billableItems[1][period]") Period
+                    select(name="billableItems[1][period]" type="select")
+                        option(value="yearly" selected=(site.billableItems['1']['period'] === 'yearly' ? 'selected' : false)) Yearly
+                        option(value="monthly" selected=(site.billableItems['1']['period'] === 'monthly' ? 'selected' : false)) Monthly
+            .inline-form
+                .form-group
+                    label(for="billableItems[2][description]") Description
+                    input(name="billableItems[2][description]" type="text" value=site.billableItems['2']['description'])
+                .form-group
+                    label(for="billableItems[2][rate]") Rate
+                    input(name="billableItems[2][rate]" type="number" value=site.billableItems['2']['rate'])
+                .form-group
+                    label(for="billableItems[2][period]") Period
+                    select(name="billableItems[2][period]" type="select")
+                        option(value="yearly" selected=(site.billableItems['2']['period'] === 'yearly' ? 'selected' : false)) Yearly
+                        option(value="monthly" selected=(site.billableItems['2']['period'] === 'monthly' ? 'selected' : false)) Monthly
+        else
+            .inline-form
+                .form-group
+                    label(for="billableItems[0][description]") Description
+                    input(name="billableItems[0][description]" type="text" )
+                .form-group
+                    label(for="billableItems[0][rate]") Rate
+                    input(name="billableItems[0][rate]" type="number" )
+                .form-group
+                    label(for="billableItems[0][period]") Period
+                    select(name="billableItems[0][period]" type="select")
+                        option(value="yearly") Yearly
+                        option(value="monthly") Monthly
+            .inline-form
+                .form-group
+                    label(for="billableItems[1][description]") Description
+                    input(name="billableItems[1][description]" type="text" )
+                .form-group
+                    label(for="billableItems[1][rate]") Rate
+                    input(name="billableItems[1][rate]" type="number" )
+                .form-group
+                    label(for="billableItems[1][period]") Period
+                    select(name="billableItems[1][period]" type="select")
+                        option(value="yearly" ) Yearly
+                        option(value="monthly" ) Monthly
+            .inline-form
+                .form-group
+                    label(for="billableItems[2][description]") Description
+                    input(name="billableItems[2][description]" type="text" )
+                .form-group
+                    label(for="billableItems[2][rate]") Rate
+                    input(name="billableItems[2][rate]" type="number" )
+                .form-group
+                    label(for="billableItems[2][period]") Period
+                    select(name="billableItems[2][period]" type="select")
+                        option(value="yearly" ) Yearly
+                        option(value="monthly" ) Monthly
+        label(for="renewal") Renewal Date
+        if site.renewal
+            - const date = h.moment(site.renewal).format('MM/DD/YYYY')
+                p Current Renewal date is #{date}
+        input(type="date" name="renewal")
+        input(type="submit" value="Save 🐒" class="button")

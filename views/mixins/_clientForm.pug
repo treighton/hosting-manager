@@ -1,0 +1,11 @@
+mixin cleintForm(client = {})
+    form(action=`/client/add/${client._id || ''}` method="post" class="card")
+        label(for="name") Name
+        input(type="text" name="name" value=client.name)
+        label(for="contactName") Contact Name
+        input(type="text" name="contactName" value=client.contactName)
+        label(for="email") Contact Email
+        input(type="text" name="email" value=client.email)
+        label(for="phone") Contact Phone
+        input(type="text" name="phone" value=client.phone)
+        input(type="submit" value="Save 🍔" class="button")
