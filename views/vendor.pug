@@ -1,7 +1,9 @@
 extends layout
 
 block content
-    .inner
+    .single__hero
         h1= vendor.name
+    .single__details.inner
         .card
-            p Monthly Cost: $#{vendor.monthlyCosts}
+            h2
+                a(href=`${vendor.link}`)= vendor.link

@@ -15,4 +15,5 @@ exports.createClient = async(req, res) => {
 exports.getClient = async(req, res) => {
     const client = await Client.findOne( { slug: req.params.slug } );
     res.render('client', {title: client.name, client})
+    //res.json(client)
 };

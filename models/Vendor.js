@@ -17,7 +17,17 @@ const vendorSchema = new mongoose.Schema({
         type: String,
         trim: true
     }
+}, {
+    toJSON: { virtuals: true },
+    toObject: { virtuals:true }
 });
+
+vendorSchema.virtual('sites', {
+    ref: 'Site',
+    localField: '_id',
+    foreignField: 'hostingVendor',
+});
+
 
 vendorSchema.pre('save', async function (next) {
     if(!this.isModified('name')) {
@@ -37,5 +47,13 @@ vendorSchema.pre('save', async function (next) {
     next();
     // TODO make so slugs must be unique
 });
+
+function autopopulate(next) {
+    this.populate('sites');
+    next();
+}
+
+//vendorSchema.pre('find', autopopulate);
+vendorSchema.pre('findOne', autopopulate);
 
 module.exports = mongoose.model('Vendor', vendorSchema);

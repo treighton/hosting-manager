@@ -46,6 +46,22 @@ exports.updateSite = async(req, res) => {
         }
     ).exec();
     req.flash('success', `Successfully updated <strong>${site.name}</strong> <a href="/site/${site._id}">View 
-Store</a>`);
+Site</a>`);
     res.redirect(`/site/${site._id}/edit`)
+};
+
+exports.searchSites = async(req, res) => {
+    const sites = await Site
+        .find({
+            $text: {
+                $search: req.query.q
+            }
+        }, {
+            //score: { $meta: 'textScore' }
+        })
+        .sort({
+            //score: {$meta: 'textScore' }
+        });
+
+    res.json(sites);
 };

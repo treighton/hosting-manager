@@ -12,7 +12,6 @@ const siteSchema = mongoose.Schema({
         type:String,
         trim: true,
         required: 'You must enter a Name for this site',
-        index: { unique: true }
     },
     client: {
         type: mongoose.Schema.ObjectId,
@@ -33,8 +32,7 @@ const siteSchema = mongoose.Schema({
     },
     domainManager: {
         type:Boolean,
-        required: 'The whole reason we build this app was to make managing this shit' +
-        ' easier...please tell us who manages this domain'
+        required: 'The whole reason we build this app was to make managing this shit easier...please tell us who manages this domain'
     },
     registrar: {
         type: String,
@@ -54,6 +52,10 @@ const siteSchema = mongoose.Schema({
         default: Date.now(),
         required: "Do i seriously have to hold your hand all the way through this?"
     }
+});
+
+siteSchema.index({
+    name: 'text'
 });
 
 function autopopulate(next) {

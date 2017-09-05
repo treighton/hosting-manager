@@ -21,6 +21,15 @@ const clientSchema = mongoose.Schema({
         type: String,
         trim: true
     }
+}, {
+    toJSON: { virtuals: true },
+    toObject: { virtuals:true }
+});
+
+clientSchema.virtual('sites', {
+    ref: 'Site',
+    localField: '_id',
+    foreignField: 'client',
 });
 
 clientSchema.pre('save', async function (next) {
@@ -41,5 +50,13 @@ clientSchema.pre('save', async function (next) {
     next();
     // TODO make so slugs must be unique
 });
+
+function autopopulate(next) {
+    this.populate('sites');
+    next();
+}
+
+//clientSchema.pre('find', autopopulate);
+clientSchema.pre('findOne', autopopulate);
 
 module.exports = mongoose.model('Client',clientSchema);

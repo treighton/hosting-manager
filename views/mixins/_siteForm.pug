@@ -3,7 +3,7 @@ mixin siteForm(site = {}, clients ={}, vendors = {})
         label(for="name") Name
         input(type="text" name="name" value=site.name required)
         label(for="url") Live Site URL
-        input(type="text" name="url" value=site.staging)
+        input(type="text" name="url" value=site.url)
         label(for="staging") Staging Site URL
         input(type="text" name="staging" value=site.staging)
         label(for="client") Client
@@ -32,7 +32,7 @@ mixin siteForm(site = {}, clients ={}, vendors = {})
         label(for="nameServer") Where is the NS?
         input(type="text" name="nameServer" value=site.nameServer)
         label(for="sslProvider") Where is the SSL from?
-        input(type="text" name="sslProvider" valuel=site.sslProvider)
+        input(type="text" name="sslProvider" value=site.sslProvider)
         b Billable Items
         if site.billableItems
             .inline-form
@@ -108,9 +108,9 @@ mixin siteForm(site = {}, clients ={}, vendors = {})
                     select(name="billableItems[2][period]" type="select")
                         option(value="yearly" ) Yearly
                         option(value="monthly" ) Monthly
-        label(for="renewal") Renewal Date
         if site.renewal
             - const date = h.moment(site.renewal).format('MM/DD/YYYY')
                 p Current Renewal date is #{date}
-        input(type="date" name="renewal")
+        label(for="renewal") Renewal Date
+        input(type="text" name="renewal" value=site.renewal placeholder="MM/DD/YYYY")
         input(type="submit" value="Save 🐒" class="button")

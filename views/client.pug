@@ -1,10 +1,19 @@
 extends layout
 
 block content
-    .inner
+    .single__hero
         h1= client.name
+    .single__details.inner
         .card
-            b Contact Info
-            p= client.contactName
-            p= client.phone
-            p= client.email
+            h2 Contact Info
+            ul
+                li= client.contactName
+                li= client.email
+                li= client.phone
+            h2 Client Sites
+            ul
+                each site in client.sites
+                    li
+                        a(href=`/site/${site._id}`)=site.name
+
+

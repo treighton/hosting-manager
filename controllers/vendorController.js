@@ -15,4 +15,5 @@ exports.createVendor = async(req, res) => {
 exports.getVendor = async(req, res) => {
     const vendor = await Vendor.findOne( { slug: req.params.slug } );
     res.render('vendor', {title: vendor.name, vendor})
+    //res.json(vendor)
 };
