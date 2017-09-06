@@ -32,12 +32,12 @@ router.post('/site/add/:id', catchErrors(siteController.updateSite));
 router.post('/site/:id/remove', catchErrors(siteController.removeSite));
 //auth
 router.get('/login', userController.loginForm);
-//router.get('/register', userController.registerForm);
-/*router.post('/register',
+router.get('/register', userController.registerForm);
+router.post('/register',
     userController.validateRegister,
     userController.register,
     authController.login
-);*/
+);
 router.get('/logout', authController.logout);
 
 router.post('/login', authController.login);
