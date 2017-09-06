@@ -18,9 +18,9 @@ block content
                     td
                         a(href=`/site/${site._id}`)= site.name
                     td
-                        a(href=`/site/${site.client.slug}`)= site.client.name
+                        a(href=`/client/${site.client.slug}`)= site.client.name
                     td
-                        a(href=`/site/${site.hostingVendor.slug}`)= site.hostingVendor.name
+                        a(href=`/vendor/${site.hostingVendor.slug}`)= site.hostingVendor.name
                     -let total = 0
                         for item in site.billableItems
                             - total = (total + item.rate)

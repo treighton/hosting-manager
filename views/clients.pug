@@ -6,15 +6,18 @@ include mixins/_siteCard
 block content
     .inner
         h1= title
+        h1
+            a(href='/client/add/')
         table.table
             thead
                 td Client
-                td Vendor Homepage
-                td Monthly Costs
-            each vendor in vendors
+                td Contact Person
+                td Email
+                td Phone
+            each client in clients
                 tr
                     td
-                        a(href=`/vendor/${vendor.slug}`)= vendor.name
-                    td
-                        a(href=`https://${vendor.link}`)= vendor.link
-                    td= vendor.monthlyCosts
+                        a(href=`/client/${client.slug}`)= client.name
+                    td= client.contactName
+                    td= client.email
+                    td= client.phone

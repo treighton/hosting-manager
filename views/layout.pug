@@ -17,6 +17,16 @@ html
                 li.nav__item
                   a.nav__link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav__link--active' : ''))
                     span #{item.title}
+              li.nav__dropdown
+                a.nav__link.add-toggle
+                  !=h.icon('add')
+                ul.dropdown
+                  li
+                    a(href=`/site/add`) Add Site
+                  li
+                    a(href=`/client/add`) Add Client
+                  li
+                    a(href=`/vendor/add`) Add Vendor
             .nav__section.nav__section--search
               .search
                 input.search__input(type="text" placeholder="Search for a site..." name="search")

@@ -16,6 +16,7 @@ router.post('/vendor/add', catchErrors(vendorController.createVendor));
 router.get('/vendor/:slug', catchErrors(vendorController.getVendor));
 
 //Clients
+router.get('/client/', catchErrors(clientController.getClients));
 router.get('/client/add', clientController.addClient);
 router.post('/client/add', catchErrors(clientController.createClient));
 router.get('/client/:slug', catchErrors(clientController.getClient));

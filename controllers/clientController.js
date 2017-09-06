@@ -5,6 +5,12 @@ exports.addClient = (req, res) => {
     res.render('editClient', {title: 'Add A Client'});
 };
 
+exports.getClients = async(req,res) => {
+    const clients = await Client.find().sort({name: 'ascending'});
+    res.render('clients', {title: `All Clients`, clients})
+    //res.json(sites)
+}
+
 exports.createClient = async(req, res) => {
     const client = new Client(req.body);
     await client.save();

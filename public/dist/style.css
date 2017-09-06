@@ -671,6 +671,30 @@ select {
     .nav__link--logo svg {
       width: 200px;
       margin: 0; }
+    .nav__link.add-toggle {
+      padding: 0 30px; }
+  .nav__dropdown {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex; }
+    .nav__dropdown .dropdown {
+      background: white;
+      position: absolute;
+      width: 100%;
+      top: 100%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 5;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      display: none; }
+      .nav__dropdown .dropdown.active {
+        display: block; }
+      .nav__dropdown .dropdown li {
+        list-style: none;
+        padding: 10px;
+        display: block;
+        border-bottom: 1px solid #ececec; }
 
 .splash__link--logo {
   text-align: center;

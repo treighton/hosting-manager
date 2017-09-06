@@ -2654,9 +2654,38 @@ var _typeAhead = __webpack_require__(9);
 
 var _typeAhead2 = _interopRequireDefault(_typeAhead);
 
+var _dropdown = __webpack_require__(37);
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _typeAhead2.default)((0, _bling.$)('.search'));
+(0, _dropdown2.default)((0, _bling.$)('.add-toggle'));
+
+/***/ }),
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var dropdown = function dropdown(element) {
+    element.addEventListener('click', function () {
+        document.querySelector('.dropdown').classList.toggle('active');
+    });
+};
+
+exports.default = dropdown;
 
 /***/ })
 /******/ ]);
