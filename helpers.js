@@ -23,7 +23,7 @@ exports.siteName = `PDG Hosting`;
 
 //format
 exports.menu = [
-  { slug: '/site/add', title: 'Add Site', icon: 'add', },
-  { slug: '/vendor/add', title: 'Add Vendor', icon: 'add', },
-  { slug: '/client/add', title: 'Add Client', icon: 'add', },
+  { slug: '/sites/', title: 'Sites', icon: '', },
+  { slug: '/vendor/', title: 'Vendors', icon: '', },
+  { slug: '/client/', title: 'Clients', icon: '', },
 ];

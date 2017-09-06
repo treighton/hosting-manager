@@ -16,24 +16,28 @@ html
               each item in h.menu
                 li.nav__item
                   a.nav__link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav__link--active' : ''))
-                    != h.icon(item.icon)
                     span #{item.title}
             .nav__section.nav__section--search
               .search
-                input.search__input(type="text" placeholder="WPEngine, CloudSites..." name="search")
+                input.search__input(type="text" placeholder="Search for a site..." name="search")
                 .search__results
+      else
+        .splash
+          .splash__link--logo
+            !=h.icon('logo')
+          .splash__title
+
+
     block messages
       if locals.flashes
         .inner
           .flash-messages
             - const categories = Object.keys(locals.flashes)
-            each category in categories
-              each message in flashes[category]
-                .flash(class=`flash--${category}`)
-                  p.flash__text!= message
-                  button.flash__remove(onClick="this.parentElement.remove()") &times;
-    //.content
-    //  block content
+              each category in categories
+                each message in flashes[category]
+                  .flash(class=`flash--${category}`)
+                    p.flash__text!= message
+                    button.flash__remove(onClick="this.parentElement.remove()") &times;
     if user
       .content
         block content

@@ -32,6 +32,7 @@ nav {
 a {
   text-decoration: none;
   color:$black;
+  font-weight: bolder;
 }
 
 p a {
@@ -41,6 +42,16 @@ p a {
 p {
   line-height: 2;
   font-size: 1.6rem;
+}
+
+td {
+  a{
+    color: #23527c;
+  }
+  a:focus, a:hover {
+    color: lighten(#23527c, 15%);
+    text-decoration: underline;
+  }
 }
 
 .title {

@@ -444,7 +444,8 @@ nav h1 {
 
 a {
   text-decoration: none;
-  color: #303030; }
+  color: #303030;
+  font-weight: bolder; }
 
 p a {
   border-bottom: 2px solid #FFC40E; }
@@ -452,6 +453,13 @@ p a {
 p {
   line-height: 2;
   font-size: 1.6rem; }
+
+td a {
+  color: #23527c; }
+
+td a:focus, td a:hover {
+  color: #3479b8;
+  text-decoration: underline; }
 
 .title {
   word-wrap: break-word;
@@ -663,6 +671,13 @@ select {
     .nav__link--logo svg {
       width: 200px;
       margin: 0; }
+
+.splash__link--logo {
+  text-align: center;
+  padding: 150px; }
+  .splash__link--logo svg {
+    width: 200px;
+    margin: 0; }
 
 @media all and (max-width: 1200px) {
   .nav__link {
@@ -1155,6 +1170,9 @@ select {
   color: #303030;
   font-family: 'Encode Sans', sans-serif;
   font-weight: 600; }
+  .button__warning {
+    background: #E50714;
+    color: #ffffff; }
 
 .avatar {
   min-width: 50px;

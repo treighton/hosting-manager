@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const Vendor = mongoose.model('Vendor');
 
+
+exports.getVendors = async(req,res) => {
+    const vendors = await Vendor.find();
+    res.render('vendors', {title: `All Vendors`, vendors})
+    //res.json(sites)
+}
+
 exports.addVendor = (req, res) => {
     res.render('editVendor', {title: 'Add A Vendor'});
 };

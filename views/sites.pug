@@ -6,6 +6,24 @@ include mixins/_siteCard
 block content
     .inner
         h1= title
-        .sites
+        table.table
+            thead
+                td Site Name
+                td Client
+                td Hosting Vendor
+                td Billable Total
+                td renewal Date
             each site in sites
-                +siteCard(site)
+                tr
+                    td
+                        a(href=`/site/${site._id}`)= site.name
+                    td
+                        a(href=`/site/${site.client.slug}`)= site.client.name
+                    td
+                        a(href=`/site/${site.hostingVendor.slug}`)= site.hostingVendor.name
+                    -let total = 0
+                        for item in site.billableItems
+                            - total = (total + item.rate)
+                        td=`$ ${total}`
+
+                    td= h.moment(site.renewal).format('MM/DD/YY')

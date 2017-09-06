@@ -65,3 +65,9 @@ exports.searchSites = async(req, res) => {
 
     res.json(sites);
 };
+
+exports.removeSite = async(req, res) => {
+    const site = await Site.findOneAndRemove( { _id: req.params.id }).exec();
+    req.flash('success', `Successfully Deleted <strong>${site.name}</strong>`);
+    res.redirect('/');
+};
