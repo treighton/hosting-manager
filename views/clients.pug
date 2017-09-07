@@ -6,8 +6,7 @@ include mixins/_siteCard
 block content
     .inner
         h1= title
-        h1
-            a(href='/client/add/')
+            em  (#{clients.length} total clients)
         table.table
             thead
                 td Client

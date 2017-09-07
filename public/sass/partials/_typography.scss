@@ -23,6 +23,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Encode Sans', sans-serif;
   font-weight: 600;
   letter-spacing:-1px;
+  em {
+    font-weight: 100;
+    font-size: 50%;
+  }
 }
 nav {
   h1 {

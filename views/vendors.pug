@@ -17,4 +17,5 @@ block content
                         a(href=`/vendor/${vendor.slug}`)= vendor.name
                     td
                         a(href=`https://${vendor.link}`)= vendor.link
-                    td= vendor.monthlyCosts
+                    td(data-total=`${vendor.monthlyCosts}`).siteTotal= vendor.monthlyCosts
+        .grandTotal

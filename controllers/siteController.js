@@ -57,10 +57,10 @@ exports.searchSites = async(req, res) => {
                 $search: req.query.q
             }
         }, {
-            //score: { $meta: 'textScore' }
+            score: { $meta: 'textScore' }
         })
         .sort({
-            //score: {$meta: 'textScore' }
+            score: {$meta: 'textScore' }
         });
 
     res.json(sites);

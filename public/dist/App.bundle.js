@@ -2676,10 +2676,51 @@ var _dropdown = __webpack_require__(9);
 
 var _dropdown2 = _interopRequireDefault(_dropdown);
 
+var _addTotals = __webpack_require__(38);
+
+var _addTotals2 = _interopRequireDefault(_addTotals);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _typeAhead2.default)((0, _bling.$)('.search'));
 (0, _dropdown2.default)((0, _bling.$)('.add-toggle'));
+(0, _addTotals2.default)((0, _bling.$$)('.siteTotal'), (0, _bling.$)('.grandTotal'));
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var addTotal = function addTotal(els) {
+    var totals = [];
+    els.forEach(function (el) {
+        totals.push(parseFloat(el.dataset.total));
+    });
+    return totals.reduce(function (pv, cv) {
+        return pv + cv;
+    }, 0);
+};
+
+var renderTotal = function renderTotal(target, total) {
+    target.innerHTML = "<h2>Total: $ " + total + "</h2>";
+};
+
+var totaler = function totaler(els, target) {
+    renderTotal(target, addTotal(els));
+};
+
+exports.default = totaler;
 
 /***/ })
 /******/ ]);

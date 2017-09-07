@@ -6,8 +6,9 @@ const clientController = require('../controllers/clientController');
 const siteController = require('../controllers/siteController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+const dashboardController = require('../controllers/dashboardController');
 // Do work here
-router.get('/', catchErrors(siteController.getSites));
+router.get('/', catchErrors(dashboardController.renderDashboard));
 
 //Vendors
 router.get('/vendor/', catchErrors(vendorController.getVendors));
@@ -52,6 +53,7 @@ router.post('/login', authController.login);
 
 //api
 router.get('/api/search', catchErrors(siteController.searchSites));
+
 
 
 module.exports = router;
