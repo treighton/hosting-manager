@@ -5,5 +5,9 @@ block content
         h1= vendor.name
     .single__details.inner
         .card
+            .site__actions
+                .site__action.site__action--edit
+                    a(href=`/vendor/${vendor.slug}/edit`)
+                        != h.icon('pencil')
             h2
                 a(href=`${vendor.link}`)= vendor.link

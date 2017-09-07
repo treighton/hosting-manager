@@ -9,3 +9,6 @@ mixin cleintForm(client = {})
         label(for="phone") Contact Phone
         input(type="text" name="phone" value=client.phone)
         input(type="submit" value="Save 🍔" class="button")
+    if client._id
+        form(action=`/client/${client._id || ''}/delete` method="post")
+            input(type="submit" value="DELETE CLIENT 😢" class="button__warning")

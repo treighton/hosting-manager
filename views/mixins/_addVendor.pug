@@ -7,3 +7,6 @@ mixin vendorForm(vendor = {})
         label(for="link") Link to Vendor Site
         input(type="text" name="link" value=vendor.link)
         input(type="submit" value="Save 🍔" class="button")
+    if vendor._id
+        form(action=`/vendor/${vendor._id || ''}/delete` method="post")
+            input(type="submit" value="DELETE VEndor 😢" class="button__warning")

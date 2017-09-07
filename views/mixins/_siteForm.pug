@@ -114,5 +114,6 @@ mixin siteForm(site = {}, clients ={}, vendors = {})
         label(for="renewal") Renewal Date
         input(type="text" name="renewal" value=site.renewal placeholder="MM/DD/YYYY")
         input(type="submit" value="Save 🐒" class="button")
-    form(action=`/site/${site._id || ''}/remove` method="post")
-        input(type="submit" value="DELETE SITE 😢" class="button__warning")
+    if site._id
+        form(action=`/site/${site._id || ''}/remove` method="post")
+            input(type="submit" value="DELETE SITE 😢" class="button__warning")

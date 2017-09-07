@@ -14,12 +14,18 @@ router.get('/vendor/', catchErrors(vendorController.getVendors));
 router.get('/vendor/add', vendorController.addVendor);
 router.post('/vendor/add', catchErrors(vendorController.createVendor));
 router.get('/vendor/:slug', catchErrors(vendorController.getVendor));
+router.get('/vendor/:slug/edit', catchErrors(vendorController.editVendor));
+router.post('/vendor/:slug/edit', catchErrors(vendorController.updateVendor));
+router.post('/vendor/:slug/delete', catchErrors(vendorController.deleteVendor));
 
 //Clients
 router.get('/client/', catchErrors(clientController.getClients));
 router.get('/client/add', clientController.addClient);
 router.post('/client/add', catchErrors(clientController.createClient));
 router.get('/client/:slug', catchErrors(clientController.getClient));
+router.get('/client/:slug/edit', catchErrors(clientController.editClient));
+router.post('/client/add/:id', catchErrors(clientController.updateClient));
+router.post('/client/:id/delete', catchErrors(clientController.deleteClient));
 
 
 //Sites
@@ -30,6 +36,8 @@ router.get('/site/:id', catchErrors(siteController.getSite));
 router.get('/site/:id/edit', catchErrors(siteController.editSite));
 router.post('/site/add/:id', catchErrors(siteController.updateSite));
 router.post('/site/:id/remove', catchErrors(siteController.removeSite));
+
+
 //auth
 router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);

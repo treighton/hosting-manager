@@ -8,7 +8,6 @@ exports.addClient = (req, res) => {
 exports.getClients = async(req,res) => {
     const clients = await Client.find().sort({name: 'ascending'});
     res.render('clients', {title: `All Clients`, clients})
-    //res.json(sites)
 }
 
 exports.createClient = async(req, res) => {
@@ -21,5 +20,36 @@ exports.createClient = async(req, res) => {
 exports.getClient = async(req, res) => {
     const client = await Client.findOne( { slug: req.params.slug } );
     res.render('client', {title: client.name, client})
-    //res.json(client)
 };
+
+exports.editClient = async(req, res) => {
+    const client = await Client.findOne({ slug: req.params.slug });
+    res.render('editClient', {title: `Edit ${client.name}`, client})
+};
+
+exports.updateClient = async(req, res) => {
+    const client = await Client.findOneAndUpdate(
+        {
+            _id: req.params.id
+        },
+        req.body,
+        {
+            new: true,
+            runValidators: true,
+        }
+    ).exec();
+    req.flash('success', `Successfully updated <strong>${client.name}</strong>`);
+    res.redirect(`/client/${client.slug}`)
+};
+
+exports.deleteClient = async(req, res) => {
+    const client = await Client.findOne( { _id: req.params.id });
+    if (client.sites.length > 0){
+        req.flash('error', `We cannot delete the site because it is in use by<strong>${client.sites.map((site) => (`<a href="/site/${site.id}">${site.name}</a>`)).join(' ')}</strong>`);
+        res.redirect(`/client/${client.slug}`);
+        return
+    }
+    client.remove();
+    req.flash('success', `Successfully Deleted <strong>${client.name}</strong>`);
+    res.redirect('/');
+}

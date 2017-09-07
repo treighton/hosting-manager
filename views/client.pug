@@ -5,6 +5,10 @@ block content
         h1= client.name
     .single__details.inner
         .card
+            .site__actions
+                .site__action.site__action--edit
+                    a(href=`/client/${client.slug}/edit`)
+                        != h.icon('pencil')
             h2 Contact Info
             ul
                 li= client.contactName
