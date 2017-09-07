@@ -24,3 +24,35 @@ exports.getVendor = async(req, res) => {
     res.render('vendor', {title: vendor.name, vendor})
     //res.json(vendor)
 };
+
+exports.editVendor = async(req, res) => {
+    const vendor = await Vendor.findOne({ slug: req.params.slug });
+    res.render('editVendor', {title: `Edit ${vendor.name}`, vendor})
+};
+
+exports.updateVendor = async(req, res) => {
+    const vendor = await Vendor.findOneAndUpdate(
+        {
+            _id: req.params.id
+        },
+        req.body,
+        {
+            new: true,
+            runValidators: true,
+        }
+    ).exec();
+    req.flash('success', `Successfully updated <strong>${vendor.name}</strong>`);
+    res.redirect(`/vendor/${vendor.slug}`)
+};
+
+exports.deleteVendor = async(req, res) => {
+    const vendor = await Vendor.findOne( { _id: req.params.id });
+    if (vendor.sites.length > 0){
+        req.flash('error', `We cannot delete the site because it is in use by<strong>${vendor.sites.map((site) => (`<a href="/site/${site.id}">${site.name}</a>`)).join(' ')}</strong>`);
+        res.redirect(`/vendor/${vendor.slug}`);
+        return
+    }
+    vendor.remove();
+    req.flash('success', `Successfully Deleted <strong>${vendor.name}</strong>`);
+    res.redirect('/vendor');
+}

@@ -15,8 +15,8 @@ router.get('/vendor/add', vendorController.addVendor);
 router.post('/vendor/add', catchErrors(vendorController.createVendor));
 router.get('/vendor/:slug', catchErrors(vendorController.getVendor));
 router.get('/vendor/:slug/edit', catchErrors(vendorController.editVendor));
-router.post('/vendor/:slug/edit', catchErrors(vendorController.updateVendor));
-router.post('/vendor/:slug/delete', catchErrors(vendorController.deleteVendor));
+router.post('/vendor/add/:id', catchErrors(vendorController.updateVendor));
+router.post('/vendor/:id/delete', catchErrors(vendorController.deleteVendor));
 
 //Clients
 router.get('/client/', catchErrors(clientController.getClients));
