@@ -15,7 +15,6 @@ exports.createSite = async(req, res) => {
 
 };
 
-
 exports.getSite = async(req, res) => {
     const site = await Site.findOne( { _id: req.params.id } );
     res.render('site', {title: site.name, site})
@@ -25,7 +24,7 @@ exports.getSites = async(req,res) => {
     const sites = await Site.find();
     res.render('sites', {title: `All Sites`, sites})
     //res.json(sites)
-}
+};
 
 exports.editSite = async(req, res) => {
     const clients = await mongoose.model('Client').find();

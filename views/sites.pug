@@ -23,9 +23,9 @@ block content
                         a(href=`/vendor/${site.hostingVendor.slug}`)= site.hostingVendor.name
                     -let total = 0
                         for item in site.billableItems
-                            - total = (total + item.rate)
-                        td(data-total=`${total}`).siteTotal=`$ ${total}`
+                            - const itemTotal = item.period === 'monthly' ? item.rate*12 :item.rate
+                            - total = total + itemTotal
+                        td(data-total=`${total}`).siteTotal=`$ ${total}/yr`
 
                     td= h.moment(site.renewal).format('MM/DD/YY')
-
         .grandTotal

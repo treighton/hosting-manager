@@ -8,7 +8,7 @@ const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const dashboardController = require('../controllers/dashboardController');
 // Do work here
-router.get('/', catchErrors(dashboardController.renderDashboard));
+router.get('/', catchErrors(siteController.getSites));
 
 //Vendors
 router.get('/vendor/', catchErrors(vendorController.getVendors));
