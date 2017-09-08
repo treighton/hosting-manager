@@ -45,11 +45,17 @@ exports.updateClient = async(req, res) => {
 exports.deleteClient = async(req, res) => {
     const client = await Client.findOne( { _id: req.params.id });
     if (client.sites.length > 0){
-        req.flash('error', `We cannot delete the site because it is in use by<strong>${client.sites.map((site) => (`<a href="/site/${site.id}">${site.name}</a>`)).join(' ')}</strong>`);
+        req.flash(
+            'error',
+            `We cannot delete the site because it is in use by <strong>${client.sites.map((site) => (
+                                `<a href="/site/${site.id}">${site.name}</a>`
+                                )).join(' ')
+            }</strong>`
+        );
         res.redirect(`/client/${client.slug}`);
         return
     }
     client.remove();
     req.flash('success', `Successfully Deleted <strong>${client.name}</strong>`);
     res.redirect('/');
-}
+};
